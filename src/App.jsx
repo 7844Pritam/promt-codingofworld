@@ -9,12 +9,12 @@ import Sidebar from "./components/Sidebar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
+import SignupForm from "./pages/Register";
 
 function App() {
   return (
     <Router>
       <div className="flex">
-        {/* <Sidebar /> */}
         <div className="flex-1">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -24,6 +24,7 @@ function App() {
             <Route path="/community" element={<Community />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/signup2" element={<SignupForm />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
