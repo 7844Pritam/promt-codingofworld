@@ -6,7 +6,7 @@ const useGetPromptStore = create((set) => ({
   prompts: [],
   promptsLoading: false,
   promptsError: "",
-  selectedCategory: null, // To track the selected category for filtering
+  selectedCategory: null, 
 
   fetchPrompts: async () => {
     set({ promptsLoading: true, promptsError: "" });

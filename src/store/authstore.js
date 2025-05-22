@@ -22,7 +22,7 @@ const useAuthStore = create((set, get) => ({
     set({ signupLoading: true, signupMessage: "", signupResponseData: null });
     try {
       const { signupFormData } = get();
-      const { success, data } = await apiPost("/auth/signup", signupFormData);
+      const { success, data } = await apiPost("/auth/signup", signupFormData,false);
 
       if (success && data.success) {
         saveAuthData(data.data);
@@ -62,7 +62,7 @@ const useAuthStore = create((set, get) => ({
     set({ loginLoading: true, loginMessage: "", loginResponseData: null });
     try {
       const { loginFormData } = get();
-      const { success, data } = await apiPost("/auth/login", loginFormData);
+      const { success, data } = await apiPost("/auth/login", loginFormData,false);
 
       if (success && data.success) {
         saveAuthData(data.data);
