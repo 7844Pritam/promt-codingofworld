@@ -1,32 +1,38 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import React from "react";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import Home from "./pages/Home";
 import AddPrompt from "./pages/AddPrompt";
 import Explore from "./pages/Explore";
 import Collections from "./pages/Collections";
 import Community from "./pages/Community";
-import Sidebar from "./components/Sidebar";
-import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
-import SignupForm from "./pages/Register";
+import LoginForm from "./pages/Login";
+import PromptsPage from "./pages/PromptsPage";
+
+function AppRoutes() {
+  const routes = useRoutes([
+    { path: "/", element: <Home /> },
+    { path: "/add-prompt", element: <AddPrompt /> },
+    { path: "/explore", element: <Explore /> },
+    { path: "/collections", element: <Collections /> },
+    { path: "/community", element: <Community /> },
+    { path: "/login", element: <LoginForm /> },
+    { path: "/signup", element: <Signup /> },
+    { path: "/profile", element: <Profile /> },
+    { path: "/prompts", element: <PromptsPage /> },
+    
+  ]);
+
+  return routes;
+}
 
 function App() {
-  return (
+  return (  
     <Router>
       <div className="flex">
         <div className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/add-prompt" element={<AddPrompt />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/collections" element={<Collections />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/signup2" element={<SignupForm />} />
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
+          <AppRoutes />
         </div>
       </div>
     </Router>

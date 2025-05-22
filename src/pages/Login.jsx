@@ -1,97 +1,75 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import React from "react";
+import useLogin from "../hooks/useLogin";
 
-function Login() {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    setErrors({ ...errors, [name]: "" });
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.email) newErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Invalid email address";
-    if (!formData.password) newErrors.password = "Password is required";
-    return newErrors;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log("Login attempt:", formData);
-      // Redirect or update auth state here
-    }, 1000);
-  };
+const LoginForm = () => {
+  const {
+    formData,
+    errors,
+    loading,
+    message,
+    responseData,
+    handleChange,
+    handleLoginSubmit,
+  } = useLogin();
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <Header />
-      <main className="container mx-auto px-4 py-6">
-        <div className="max-w-md mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Login</h1>
-          <p className="text-gray-600 mb-6">
-            Sign in to access your prompts and join the community.
-          </p>
-          <form onSubmit={handleSubmit}>
-            <InputField
-              label="Email"
-              id="email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              error={errors.email}
-            />
-            <InputField
-              label="Password"
-              id="password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              error={errors.password}
-            />
-            <Button
-              type="submit"
-              variant="primary"
-              isLoading={isLoading}
-              className="w-full"
-            >
-              Login
-            </Button>
-          </form>
-          <p className="mt-4 text-sm text-gray-600 text-center">
-            Don't have an account?{" "}
-            <Link to="/signup" className="text-primary hover:underline">
-              Sign up
-            </Link>
-          </p>
+    <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded-xl shadow-md space-y-6">
+      <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
+
+      <form onSubmit={handleLoginSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter your email"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+          />
+          {errors.email && (
+            <p className="text-sm text-red-600 mt-1">{errors.email}</p>
+          )}
         </div>
-      </main>
-      <Footer />
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Enter your password"
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+          />
+          {errors.password && (
+            <p className="text-sm text-red-600 mt-1">{errors.password}</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition disabled:opacity-60"
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
+
+      {message && (
+        <div className="text-center text-sm text-red-600 mt-2">{message}</div>
+      )}
+
+      {responseData && (
+        <div className="bg-green-100 text-green-800 text-sm p-3 rounded mt-4">
+          <h4 className="font-semibold mb-1">Login Successful!</h4>
+          <pre className="text-xs whitespace-pre-wrap">
+            {JSON.stringify(responseData, null, 2)}
+          </pre>
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default Login;
+export default LoginForm;

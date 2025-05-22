@@ -1,9 +1,12 @@
 import axios from "axios";
+import { handleApiError } from "../utils/apiErrorHandler"; 
+import { getAuthData } from '../utils/localStorate';  
 
-const BASE_URL = "http://localhost:8080/api";
+// For Vite
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,21 +15,42 @@ const api = axios.create({
 // Generic API methods
 export const apiGet = async (endpoint) => {
   try {
-    const res = await api.get(endpoint);
+    const { token } = getAuthData();
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+
+    const res = await api.get(endpoint, { headers });
     return { success: true, data: res.data };
   } catch (err) {
     return handleApiError(err);
   }
 };
 
+
 export const apiPost = async (endpoint, body) => {
   try {
-    const res = await api.post(endpoint, body);
+    const { token } = getAuthData();
+    if (!token) {
+      throw new Error('No authentication token found');
+    }
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json', 
+    };
+
+    const res = await api.post(endpoint, body, { headers });
     return { success: true, data: res.data };
   } catch (err) {
     return handleApiError(err);
   }
 };
+
 
 export const apiPut = async (endpoint, body) => {
   try {
@@ -53,13 +77,4 @@ export const apiPatch = async (endpoint, body) => {
   } catch (err) {
     return handleApiError(err);
   }
-};
-
-// Common error handler
-const handleApiError = (err) => {
-  const message =
-    err.response?.data?.message ||
-    err.message ||
-    "Something went wrong. Please try again.";
-  return { success: false, data: { message } };
 };
