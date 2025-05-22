@@ -2,7 +2,6 @@ import axios from "axios";
 import { handleApiError } from "../utils/apiErrorHandler"; 
 import { getAuthData } from '../utils/localStorate';  
 
-// For Vite
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const api = axios.create({
@@ -12,7 +11,6 @@ const api = axios.create({
   },
 });
 
-// Generic API methods
 export const apiGet = async (endpoint, authRequired = true) => {
   try {
     let headers = {

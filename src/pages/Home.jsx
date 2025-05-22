@@ -6,6 +6,7 @@ import CollectionCard from "../components/CollectionCard";
 import CTABanner from "../components/CTABanner";
 import { PROMPTS, COLLECTIONS } from "../utils/constants";
 import React from "react";
+import PromptsPage from "./PromptsPage";
 
 function Home() {
   return (
@@ -39,6 +40,7 @@ function Home() {
             </div>
           </div>
         </section>
+        <PromptsPage/>
 
         <CategoryFilter />
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
