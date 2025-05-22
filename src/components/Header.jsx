@@ -46,7 +46,7 @@ function Header() {
       Login
           </Link>
           <Link
-            to="/add-prompt"
+            to="/signup"
             className="hidden md:flex items-center justify-center bg-primary text-black px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap"
           >
 SignUp

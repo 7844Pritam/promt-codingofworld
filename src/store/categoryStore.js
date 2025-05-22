@@ -11,7 +11,7 @@ const useCategoryStore = create((set) => ({
     set({ categoriesLoading: true, categoriesError: "" });
 
     try {
-      const { success, data } = await apiGet("/categories");
+      const { success, data } = await apiGet("/categories",false);
       if (success) {
         set({ categories: data.data }); // Adjust if your API wraps it differently
       } else {

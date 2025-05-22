@@ -1,12 +1,8 @@
-import { useState } from "react";
-import { CATEGORIES } from "../utils/constants";
+import { BsGrid, BsListCheck } from "react-icons/bs";
 import * as Icons from "react-icons/bs";
-import { BsGrid,BsListCheck } from "react-icons/bs";
 import React from "react";
 
-function CategoryFilter() {
-  const [activeCategory, setActiveCategory] = useState("All Categories");
-
+function CategoryFilter({ category, activeCategory, setActiveCategory }) {
   return (
     <section className="mb-8">
       <div className="flex items-center justify-between mb-6">
@@ -34,7 +30,18 @@ function CategoryFilter() {
 
       <div className="flex overflow-x-auto hide-scrollbar pb-2 mb-6">
         <div className="flex space-x-2">
-          {CATEGORIES.map((category) => {
+          {/* All Category Button */}
+          <button
+            className={`category-pill whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium bg-gray-100 hover:bg-gray-200 transition ${
+              activeCategory === "All" ? "active" : ""
+            }`}
+            onClick={() => setActiveCategory("All")}
+          >
+            All
+          </button>
+
+          {/* Dynamic Category Buttons */}
+          {category.map((category) => {
             const Icon = category.icon ? Icons[category.icon] : null;
             return (
               <button

@@ -2,8 +2,11 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CategoryFilter from "../components/CategoryFilter";
 import PromptCard from "../components/PrompCard";
+import CollectionCard from "../components/CollectionCard";
 import CTABanner from "../components/CTABanner";
+import { PROMPTS, COLLECTIONS } from "../utils/constants";
 import React from "react";
+import PromptsPage from "./PromptsPage";
 import useGetPrompts from "../hooks/useGetPrompt";
 import useCategories from "../hooks/useCategories";
 import { useState,useMemo } from "react";
@@ -82,6 +85,20 @@ function Home() {
         </section>
 
 
+        {/* <div className="flex justify-center mb-16">
+          <button className="bg-white border border-gray-200 text-gray-700 px-6 py-3 rounded-button font-medium hover:bg-gray-50 transition whitespace-nowrap !rounded-button">
+            Load More Prompts
+          </button>
+        </div> */}
+
+        {/* <section className="mb-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Collections</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {COLLECTIONS.map((collection) => (
+              <CollectionCard key={collection.id} collection={collection} />
+            ))}
+          </div>
+        </section> */}
 
         <CTABanner />
       </main>
