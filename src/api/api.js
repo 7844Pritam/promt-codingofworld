@@ -13,17 +13,18 @@ const api = axios.create({
 });
 
 // Generic API methods
-export const apiGet = async (endpoint) => {
+export const apiGet = async (endpoint, authRequired = true) => {
   try {
-    const { token } = getAuthData();
-    if (!token) {
-      throw new Error("No authentication token found");
-    }
-
-    const headers = {
-      Authorization: `Bearer ${token}`,
+    let headers = {
       "Content-Type": "application/json",
     };
+
+    if (authRequired) {
+      const { token } = getAuthData();
+      if (!token) throw new Error("No authentication token found");
+
+      headers.Authorization = `Bearer ${token}`;
+    }
 
     const res = await api.get(endpoint, { headers });
     return { success: true, data: res.data };
@@ -32,17 +33,18 @@ export const apiGet = async (endpoint) => {
   }
 };
 
-
-export const apiPost = async (endpoint, body) => {
+export const apiPost = async (endpoint, body, authRequired = true) => {
   try {
-    const { token } = getAuthData();
-    if (!token) {
-      throw new Error('No authentication token found');
-    }
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json', 
+    let headers = {
+      "Content-Type": "application/json",
     };
+
+    if (authRequired) {
+      const { token } = getAuthData();
+      if (!token) throw new Error("No authentication token found");
+
+      headers.Authorization = `Bearer ${token}`;
+    }
 
     const res = await api.post(endpoint, body, { headers });
     return { success: true, data: res.data };
@@ -50,6 +52,7 @@ export const apiPost = async (endpoint, body) => {
     return handleApiError(err);
   }
 };
+
 
 
 export const apiPut = async (endpoint, body) => {

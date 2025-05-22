@@ -11,9 +11,9 @@ const useGetPromptStore = create((set) => ({
   fetchPrompts: async () => {
     set({ promptsLoading: true, promptsError: "" });
     try {
-      const { success, data } = await apiGet("/prompts");
+      const { success, data } = await apiGet("/prompts",false);
       if (success) {
-        set({ prompts: data.data }); // Adjust if your API wraps it differently
+        set({ prompts: data.data }); 
       } else {
         set({ promptsError: data.message || "Failed to fetch prompts." });
       }
