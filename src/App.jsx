@@ -17,7 +17,7 @@ function AppRoutes() {
     { path: "/explore", element: <Explore /> },
     { path: "/collections", element: <Collections /> },
     { path: "/community", element: <Community /> },
-    { path: "/login", element: <LoginForm /> },
+    { path: "/login", element: <LoginForm /> }, 
     { path: "/signup", element: <Signup /> },
     { path: "/profile", element: <Profile /> },
     { path: "/prompts", element: <PromptsPage /> },

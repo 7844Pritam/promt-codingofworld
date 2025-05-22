@@ -33,6 +33,7 @@ export const apiGet = async (endpoint, authRequired = true) => {
   }
 };
 
+
 export const apiPost = async (endpoint, body, authRequired = true) => {
   try {
     let headers = {
