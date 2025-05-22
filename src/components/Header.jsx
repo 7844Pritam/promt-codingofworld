@@ -40,8 +40,20 @@ function Header() {
           </div>
 
           <Link
+            to="/login"
+            className="hidden md:flex items-center justify-center bg-primary text-black px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap"
+          >
+      Login
+          </Link>
+          <Link
             to="/add-prompt"
-            className="hidden md:flex items-center justify-center bg-primary text-white px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap"
+            className="hidden md:flex items-center justify-center bg-primary text-black px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap"
+          >
+SignUp
+          </Link>
+          <Link
+            to="/add-prompt"
+            className="hidden md:flex items-center justify-center bg-primary text-black px-4 py-2 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap"
           >
             <BsPlus className="mr-1.5" /> Add Prompt
           </Link>
