@@ -18,7 +18,7 @@ const useLogin = () => {
 
   useEffect(() => {
     if (loginResponseData) {
-      navigate("/dashboard");
+      navigate("/");
     }
   }, [loginResponseData, navigate]);
 

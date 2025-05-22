@@ -18,7 +18,7 @@ const useAuth = () => {
 
   useEffect(() => {
     if (signupResponseData) {
-      navigate("/dashboard");
+      navigate("/");
     }
   }, [signupResponseData, navigate]);
 
