@@ -9,23 +9,9 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import LoginForm from "./pages/Login";
 import PromptsPage from "./pages/PromptsPage";
+import AppRoutes from "./AppRoutes";
 
-function AppRoutes() {
-  const routes = useRoutes([
-    { path: "/", element: <Home /> },
-    { path: "/add-prompt", element: <AddPrompt /> },
-    { path: "/explore", element: <Explore /> },
-    { path: "/collections", element: <Collections /> },
-    { path: "/community", element: <Community /> },
-    { path: "/login", element: <LoginForm /> }, 
-    { path: "/signup", element: <Signup /> },
-    { path: "/profile", element: <Profile /> },
-    { path: "/prompts", element: <PromptsPage /> },
-    
-  ]);
 
-  return routes;
-}
 
 function App() {
   return (  
