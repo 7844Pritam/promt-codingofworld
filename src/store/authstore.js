@@ -3,7 +3,6 @@ import { apiPost } from "../api/api";
 import { saveAuthData } from "../utils/localStorate"; 
 
 const useAuthStore = create((set, get) => ({
-  // Signup
   signupFormData: {
     username: "",
     email: "",

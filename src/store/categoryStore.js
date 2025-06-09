@@ -1,6 +1,5 @@
-// src/store/categoryStore.js
 import { create } from "zustand";
-import { apiGet } from "../api/api"; // This uses your axios wrapper
+import { apiGet } from "../api/api";
 
 const useCategoryStore = create((set) => ({
   categories: [],
@@ -13,7 +12,7 @@ const useCategoryStore = create((set) => ({
     try {
       const { success, data } = await apiGet("/categories",false);
       if (success) {
-        set({ categories: data.data }); // Adjust if your API wraps it differently
+        set({ categories: data.data }); differently
       } else {
         set({ categoriesError: data.message || "Failed to fetch categories." });
       }
